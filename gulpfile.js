@@ -17,18 +17,14 @@ gulp.task('css', function () {
 gulp.task('scripts', function() {
   return gulp.src('js/*.js')
     .pipe(concat('main.js'))
+    .pipe(uglify())
     .pipe(gulp.dest('main/'));
 });
 
-gulp.task('uglify', function(){
-  gulp.src('js/*.js')
-  .pipe(uglify())
-  .pipe(gulp.dest('main/'));
-});
 
 gulp.task('watch', function(){
   gulp.watch('css/*.css', ['css']);
-  gulp.watch('index.html', ['html']);
+  gulp.watch('js/*.js', ['scripts']);
 });
 
 gulp.task('default', ['scripts', 'css', 'watch']);
